@@ -28,7 +28,7 @@ contract UniversityToken is Ownable {
         _;
     }
 
-    constructor(address gpaTokenAddress, address diplomaCertificateAddress) Ownable(msg.sender) {
+    constructor(address gpaTokenAddress, address diplomaCertificateAddress){
         _gpaToken = GPAToken(gpaTokenAddress);
         _diplomaCertificate = DiplomaCertificate(diplomaCertificateAddress);
     }
@@ -43,11 +43,11 @@ contract UniversityToken is Ownable {
         _trustedCertificationEntities[universityAddress] = false;
     }
 
-    function addTrustedCertificateEntities(address Address) external onlyOwner {
-        _trustedCertificationEntities[Address] = true;
+    function addTrustedCertificateEntities(address certificateEntityAddress) external onlyOwner {
+        _trustedCertificationEntities[certificateEntityAddress] = true;
     }
-    function removeTrustedCertificateEntities(address Address) external onlyOwner {
-        _trustedCertificationEntities[Address] = false;
+    function removeTrustedCertificateEntities(address certificateEntityAddress) external onlyOwner {
+        _trustedCertificationEntities[certificateEntityAddress] = false;
     }
     //can only be called by universities
     function setGPA(address student, uint256 newGPA) external onlyTrustedUniversities{

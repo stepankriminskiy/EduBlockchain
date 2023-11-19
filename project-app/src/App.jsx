@@ -175,19 +175,25 @@ function App() {
 
   return (
     <div className="content-container">
+    {/* Title Container */}
+    <div className="title-container">
       <h2>University Token App</h2>
-      <div>
+    </div>
+
+    {/* Main Content Container */}
+    <div className="main-content">
+      {/* MetaMask Connection */}
       {accounts.length > 0 ? (
-          <>
-            <p>Connected Account: {accounts[0]}</p>
-          </>
-        ) : (
-          <button onClick={() => window.ethereum.request({ method: 'eth_requestAccounts' })}>
-            Connect to MetaMask
-          </button>
-        )}
+        <p>Connected Account: {accounts[0]}</p>
+      ) : (
+        <button onClick={() => window.ethereum.request({ method: 'eth_requestAccounts' })}>
+          Connect to MetaMask
+        </button>
+      )}
+
+      {/* GPA Section */}
       <div>
-      <h3>View Student GPA</h3>
+        <h3>View Student GPA</h3>
         <input 
           type="text" 
           value={studentAddress}

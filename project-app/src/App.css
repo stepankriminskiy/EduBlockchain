@@ -1,45 +1,79 @@
-.App {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+/* General Styles */
+body {
+  background-color: #b5ceff; /* Soft background color */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* A more modern font */
+  color: #333; /* Darker text for contrast */
 }
 
+h2 {
+  font-family: Brush Script MT, Brush Script Std, cursive 	;
+  font-size: 50px;
+  font-weight: bold
+}
+
+/* App Container */
+.App {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Logo */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
+/* Header */
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #fff; /* Lighter header */
+  color: #282c34; /* Standard text color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  padding: 20px;
+  border-radius: 8px; /* Rounded corners */
+  margin-bottom: 20px; /* Spacing from content */
 }
 
+/* Links */
 .App-link {
   color: #61dafb;
+  text-decoration: none;
 }
+
+/* Content Container */
 .content-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-height: 100vh; /* This ensures that the container takes at least the full viewport height */
+  padding: 20px;
 }
 
+/* Buttons */
+button {
+  background-color: #4caf50; /* Green background for buttons */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049; /* Darker shade on hover */
+}
+
+/* Inputs */
+input[type="text"], input[type="date"] {
+  padding: 8px;
+  margin: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 200px; /* Fixed width for inputs */
+}
+
+/* Animations */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -48,3 +82,42 @@
     transform: rotate(360deg);
   }
 }
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .content-container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  input[type="text"], input[type="date"] {
+    width: 100%; /* Full width on smaller screens */
+  }
+}
+
+/* Title Container */
+.title-container {
+  background-color: #4caf50; /* Background color for the title container */
+  padding: 0px 40px;
+  margin-bottom: 20px; /* Spacing between title and content */
+  border-radius: 8px; /* Rounded corners for the container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+  color: white; /* Color of the title text */
+
+}
+
+/* Main Content Container */
+/* Main Content Container */
+.main-content {
+  background-color: #fff; /* Background color for the main content */
+  padding: 20px;
+  border-radius: 8px; /* Rounded corners for the container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+  display: inline-block; /* Makes the container as wide as its content */
+  box-sizing: border-box; /* Ensures padding doesn't affect overall width */
+
+  /* Optional: Add max-width to prevent it from getting too wide on larger screens */
+  max-width: 90%; /* Adjust as needed */
+  margin: auto; /* Center align if using max-width */
+}
+

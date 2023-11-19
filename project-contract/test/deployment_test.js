@@ -21,5 +21,17 @@ contract("University Contract Address Setting", (accounts) => {
     assert.equal(setUniversityAddress, universityTokenInstance.address, "The UniversityToken address in DiplomaCertificate is incorrect");
   });
 
-  
+  it("check whether diploma certificate and gpatoken are set correctly ", async () => {
+    const diplomaCertificateInstance = await DiplomaCertificate.deployed();
+    const gpaTokenInstance = await GPAToken.deployed();
+    const universityTokenInstance = await UniversityToken.deployed();
+
+    const GpaTokenAddress = await universityTokenInstance.getGpaTokenAddress();
+    const DiplomaUniversityAddress = await universityTokenInstance.getDiplomaCertificateAddress();
+
+    assert.equal(DiplomaUniversityAddress, diplomaCertificateInstance.address, "DiplomaCertificate address not set correctly in UniversityToken");
+    assert.equal(GpaTokenAddress, gpaTokenInstance.address, "Gpa Token Address not set correctly in UniversityToken");
+  });
+
+
 });

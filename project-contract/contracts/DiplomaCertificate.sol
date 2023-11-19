@@ -14,6 +14,7 @@ contract DiplomaCertificate is ERC721Enumerable{
     struct CertificateData {
         string description;
         string dateIssued;
+        string imageUrl; // URL or IPFS hash of the image
     }
 
     mapping(uint256 => CertificateData) private _certificateDetails;
@@ -39,14 +40,15 @@ contract DiplomaCertificate is ERC721Enumerable{
         return UniversityContract;
     }
     
-    function mint(address recipient, string memory description, string memory dateIssued) external onlyAdminOrUniversity {
+    function mint(address recipient, string memory description, string memory dateIssued, string memory imageUrl) external onlyAdminOrUniversity {
         _tokenIdCounter.increment();
         uint256 newTokenId = _tokenIdCounter.current();
         _safeMint(recipient, newTokenId);
         
         _certificateDetails[newTokenId] = CertificateData({
             description: description,
-            dateIssued: dateIssued
+            dateIssued: dateIssued,
+            imageUrl: imageUrl 
         });
     }
     function burn(uint256 tokenId) external {
@@ -58,9 +60,9 @@ contract DiplomaCertificate is ERC721Enumerable{
         return _tokenIdCounter.current();
     }
     
-    function getCertificateDetails(uint256 tokenId) external view returns (string memory description, string memory dateIssued) {
+    function getCertificateDetails(uint256 tokenId) external view returns (string memory description, string memory dateIssued, string memory imageUrl) {
         CertificateData memory certData = _certificateDetails[tokenId];
-        return (certData.description, certData.dateIssued);
+        return (certData.description, certData.dateIssued, certData.imageUrl);
     }
 
 }

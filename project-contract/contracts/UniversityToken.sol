@@ -17,6 +17,7 @@ contract UniversityToken is Ownable {
         uint256 tokenId;
         string description;
         string dateIssued;
+        string imageUrl;
     }
 
     modifier onlyTrustedUniversities() {
@@ -62,10 +63,21 @@ contract UniversityToken is Ownable {
         _gpaToken.setGPA(student, newGPA);
     }
     //mint's certification or DIPLOMA. can be called by universities or other trusted certifiers
-    function mintCertification(address student, string memory description, string memory dateIssued) external onlyCertificationEntities{
-        _diplomaCertificate.mint(student, description, dateIssued);
+    function mintCertification(address student, string memory description, string memory dateIssued, string memory imageUrl) external onlyCertificationEntities{
+        _diplomaCertificate.mint(student, description, dateIssued, imageUrl);
         uint256 newTokenId = _diplomaCertificate.getCurrentTokenId(); // Assuming the token ID is sequential and based on totalSupply
         tokenMinters[newTokenId] = msg.sender;
+    }
+
+    function isUniversity(address UniversityAddress)external view returns (bool){
+        return _trustedUniversities[UniversityAddress];
+    }
+
+    function isCertifier(address CertifierAddress)external view returns (bool){
+        return _trustedCertificationEntities[CertifierAddress];
+    }
+    function isOwner(address _address) public view returns (bool) {
+        return _address == owner();
     }
 
     // Function to get the university that minted a specific token.
@@ -88,12 +100,13 @@ contract UniversityToken is Ownable {
 
         for (uint256 i = 0; i < tokenCount; i++) {
             uint256 tokenId = _diplomaCertificate.tokenOfOwnerByIndex(owner, i);
-            (string memory description, string memory dateIssued) = _diplomaCertificate.getCertificateDetails(tokenId);
+            (string memory description, string memory dateIssued, string memory imageUrl) = _diplomaCertificate.getCertificateDetails(tokenId);
         
             certificates[i] = CertificateData({
                 tokenId: tokenId,
                 description: description,
-                dateIssued: dateIssued
+                dateIssued: dateIssued,
+                imageUrl: imageUrl
             });
         }
 

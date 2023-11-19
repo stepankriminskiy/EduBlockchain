@@ -2,7 +2,7 @@ const GPAToken = artifacts.require("GPAToken");
 const DiplomaCertificate = artifacts.require("DiplomaCertificate");
 const UniversityToken = artifacts.require("UniversityToken");
 
-module.exports = async function(deployer) {
+module.exports = async function(deployer, accounts) {
 
    // Deploy the contracts
   await deployer.deploy(GPAToken);
@@ -17,5 +17,6 @@ module.exports = async function(deployer) {
   // Call setUniversityContract on GPAToken and DiplomaCertificate
   await gpaToken.setUniversityContract(universityToken.address);
   await diplomaCertificate.setUniversityContract(universityToken.address);
+
 
 };

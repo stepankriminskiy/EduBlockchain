@@ -44,7 +44,7 @@
 // require('dotenv').config();
 // const { MNEMONIC, PROJECT_ID } = process.env;
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 module.exports = {
   /**
@@ -58,11 +58,28 @@ module.exports = {
    */
 
   networks: {
-    development: {
-      host: "127.0.0.1",
-      port: 7545, // Change this to your Ganache port
-      network_id: "*", // Match any network id
-    }
+    
+    sepolia: {
+      
+      provider: () =>
+        new HDWalletProvider(
+          'I HAD MY MNEMONIC IN HERE, YOU PUT YOURS FOR DEPLOYMENT', 
+          'https://sepolia.infura.io/v3/c3fe7969cfdb4ff3ada0004a6c8b1535' // Infura Sepolia URL
+        ),
+      network_id: 11155111, // Sepolia's network id
+      gas: 5500000, // Gas limit
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
+
+
+
+
+
+
+
+    
     // Useful for testing. The `development` name is special - truffle uses it by default
     // if it's defined here and no other network is specified at the command line.
     // You should run a client (like ganache, geth, or parity) in a separate terminal

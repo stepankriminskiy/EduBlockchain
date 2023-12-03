@@ -25,7 +25,7 @@ function App() {
   const [tokenIdToRemove, setTokenIdToRemove] = useState('');
   const [imageUrl, setImageUrl] = useState('');
 
-  const contractAddress = "0xcb57cf8800d9f24D35cd522d66763223E776F9D6";
+  const contractAddress = "0x7Ab012BC145C92e0cc3872dAa66B3c9834D462bF";
 
   useEffect(() => {
     const initWeb3 = async () => {

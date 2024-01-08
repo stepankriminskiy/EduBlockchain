@@ -1,4 +1,4 @@
-﻿# EduBlockchain
+﻿# About
 
 ## Link to project 
 https://edublockchain.netlify.app/
